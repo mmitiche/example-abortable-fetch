@@ -17,8 +17,7 @@
     "cors": "^2.8.5",
     "esbuild": "^0.20.2",
     "express": "^4.19.2",
-    "whatwg-fetch": "^3.6.20",
-    "xmlhttprequest": "^1.8.0"
+    "whatwg-fetch": "^3.6.20"
   },
   "type": "module"
 }
