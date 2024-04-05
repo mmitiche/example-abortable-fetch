@@ -1,7 +1,7 @@
 ## How to test in locker
 1. `npm i`
-2. `node server.js`. ⚠️ Don't close the process.
 2. `npm run build`.
+2. `node server.js`. ⚠️ Don't close the process.
 3. Open https://developer.salesforce.com/docs/component-library/tools/locker-service-console
 4. Open your DevTools to see the console
 5. Copy-paste the content of `without-shim.js`.
