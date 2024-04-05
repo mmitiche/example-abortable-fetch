@@ -2,15 +2,10 @@ export {
   AbortController,
   AbortSignal,
 } from "abortcontroller-polyfill/dist/cjs-ponyfill";
-import { abortableFetch } from "abortcontroller-polyfill/dist/cjs-ponyfill";
-import {
-  fetch as fetchPonyfill,
-  Request as RequestPonyfill,
-} from "whatwg-fetch";
+import { abortableFetch as abortableFetchFactory } from "abortcontroller-polyfill/dist/cjs-ponyfill";
 
-const { fetch, Request } = abortableFetch({
-  fetch: fetchPonyfill,
-  Request: RequestPonyfill,
+const { fetch: abortableFetch } = abortableFetchFactory({
+  fetch
 });
 
-export { fetch, Request };
+export { abortableFetch as fetch};

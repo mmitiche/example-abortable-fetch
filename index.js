@@ -24,7 +24,7 @@ const fetchData = async () => {
       },
       onmessage(event) {
         console.log("new message");
-        console.log(event.data);
+        console.log(event.data, Date.now());
       },
       onclose() {
         console.log("Connection closed by the server");
