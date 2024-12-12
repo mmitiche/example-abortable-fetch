@@ -1,16 +1,18 @@
+import {abortableFetch as abortableFetchFactory} from 'abortcontroller-polyfill/dist/cjs-ponyfill';
+import { Headers } from "headers-polyfill";
+
+
 export {
   AbortController,
   AbortSignal,
-} from "abortcontroller-polyfill/dist/cjs-ponyfill";
-import { abortableFetch } from "abortcontroller-polyfill/dist/cjs-ponyfill";
-import {
-  fetch as fetchPonyfill,
-  Request as RequestPonyfill,
-} from "whatwg-fetch";
+} from 'abortcontroller-polyfill/dist/cjs-ponyfill';
 
-const { fetch, Request } = abortableFetch({
-  fetch: fetchPonyfill,
-  Request: RequestPonyfill,
+const {fetch: abortableFetch, request: abortableRequest} = abortableFetchFactory({
+  fetch,
+  Request
 });
+export {abortableFetch as fetch, abortableRequest as Request};
 
-export { fetch, Request };
+
+const globalThisShim = typeof globalThis !== "undefined" ? globalThis : window;
+export { Headers, globalThisShim as globalThis };

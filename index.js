@@ -1,37 +1,30 @@
-import {fetchEventSource} from '@microsoft/fetch-event-source';
+const request = new Request("https://jsonplaceholder.typicode.com/posts", {
+  method: "POST",
+  headers: new Headers({
+    "Content-Type": "application/json",
+  }),
+  body: JSON.stringify({
+    title: "foo",
+    body: "bar",
+    userId: 1,
+  }),
+});
 
-const serverBaseURL = "http://localhost:5000";
+const url = request.url;
+const options = {
+  method: request.method,
+  headers: request.headers,
+  body: request.body,
+  duplex: "half",
+};
 
-const fetchData = async () => {
-    await fetchEventSource(`${serverBaseURL}/sse`, {
-      method: "POST",
-      headers: {
-        Accept: "text/event-stream",
-      },
-      fetch: fetch,
-      onopen(res) {
-        console.log('on open');
-
-        if (res.ok && res.status === 200) {
-          console.log("Connection made ", res);
-        } else if (
-          res.status >= 400 &&
-          res.status < 500 &&
-          res.status !== 429
-        ) {
-          console.log("Client side error ", res);
-        }
-      },
-      onmessage(event) {
-        console.log("new message");
-        console.log(event.data);
-      },
-      onclose() {
-        console.log("Connection closed by the server");
-      },
-      onerror(err) {
-        console.log("There was an error from server", err);
-      },
-    });
-  };
-  fetchData();
+fetch(url, options)
+// fetch(request)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => console.log("Response Data:", data))
+  .catch((error) => console.error("Error:", error));
