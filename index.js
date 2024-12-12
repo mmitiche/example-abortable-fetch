@@ -18,8 +18,8 @@ const options = {
   duplex: "half",
 };
 
-fetch(url, options)
-// fetch(request)
+// fetch(url, options)
+fetch(request)
   .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

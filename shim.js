@@ -7,11 +7,11 @@ export {
   AbortSignal,
 } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
 
-const {fetch: abortableFetch, request: abortableRequest} = abortableFetchFactory({
+const {fetch: abortableFetch, Request: AbortableRequest} = abortableFetchFactory({
   fetch,
   Request
 });
-export {abortableFetch as fetch, abortableRequest as Request};
+export {abortableFetch as fetch, AbortableRequest as Request};
 
 
 const globalThisShim = typeof globalThis !== "undefined" ? globalThis : window;
